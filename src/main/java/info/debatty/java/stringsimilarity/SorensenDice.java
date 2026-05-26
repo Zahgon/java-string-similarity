@@ -28,7 +28,6 @@ import info.debatty.java.stringsimilarity.interfaces.NormalizedStringDistance;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
 import net.jcip.annotations.Immutable;
 
 /**
@@ -38,8 +37,7 @@ import net.jcip.annotations.Immutable;
  * @author Thibault Debatty
  */
 @Immutable
-public class SorensenDice extends ShingleBased implements
-        NormalizedStringDistance, NormalizedStringSimilarity {
+public class SorensenDice extends ShingleBased implements NormalizedStringDistance, NormalizedStringSimilarity {
 
     /**
      * Sorensen-Dice coefficient, aka Sørensen index, Dice's coefficient or
@@ -78,34 +76,7 @@ public class SorensenDice extends ShingleBased implements
      * @throws NullPointerException if s1 or s2 is null.
      */
     public final double similarity(final String s1, final String s2) {
-        if (s1 == null) {
-            throw new NullPointerException("s1 must not be null");
-        }
-
-        if (s2 == null) {
-            throw new NullPointerException("s2 must not be null");
-        }
-
-        if (s1.equals(s2)) {
-            return 1;
-        }
-
-        Map<String, Integer> profile1 = getProfile(s1);
-        Map<String, Integer> profile2 = getProfile(s2);
-
-        Set<String> union = new HashSet<String>();
-        union.addAll(profile1.keySet());
-        union.addAll(profile2.keySet());
-
-        int inter = 0;
-
-        for (String key : union) {
-            if (profile1.containsKey(key) && profile2.containsKey(key)) {
-                inter++;
-            }
-        }
-
-        return 2.0 * inter / (profile1.size() + profile2.size());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -117,6 +88,6 @@ public class SorensenDice extends ShingleBased implements
      * @throws NullPointerException if s1 or s2 is null.
      */
     public final double distance(final String s1, final String s2) {
-        return 1 - similarity(s1, s2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -36,6 +36,7 @@ import net.jcip.annotations.Immutable;
 public class WeightedLevenshtein implements StringDistance {
 
     private final CharacterSubstitutionInterface charsub;
+
     private final CharacterInsDelInterface charchange;
 
     /**
@@ -53,8 +54,7 @@ public class WeightedLevenshtein implements StringDistance {
      * @param charchange The strategy to determine character insertion /
      *                   deletion weights.
      */
-    public WeightedLevenshtein(final CharacterSubstitutionInterface charsub,
-                               final CharacterInsDelInterface charchange) {
+    public WeightedLevenshtein(final CharacterSubstitutionInterface charsub, final CharacterInsDelInterface charchange) {
         this.charsub = charsub;
         this.charchange = charchange;
     }
@@ -63,7 +63,7 @@ public class WeightedLevenshtein implements StringDistance {
      * Equivalent to distance(s1, s2, Double.MAX_VALUE).
      */
     public final double distance(final String s1, final String s2) {
-        return distance(s1, s2, Double.MAX_VALUE);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -78,86 +78,9 @@ public class WeightedLevenshtein implements StringDistance {
      * @return The computed weighted Levenshtein distance.
      * @throws NullPointerException if s1 or s2 is null.
      */
-    public final double distance(final String s1, final String s2,
-                                 final double limit) {
-        if (s1 == null) {
-            throw new NullPointerException("s1 must not be null");
-        }
-
-        if (s2 == null) {
-            throw new NullPointerException("s2 must not be null");
-        }
-
-        if (s1.equals(s2)) {
-            return 0;
-        }
-
-        if (s1.length() == 0) {
-            return s2.length();
-        }
-
-        if (s2.length() == 0) {
-            return s1.length();
-        }
-
-        // create two work vectors of floating point (i.e. weighted) distances
-        double[] v0 = new double[s2.length() + 1];
-        double[] v1 = new double[s2.length() + 1];
-        double[] vtemp;
-
-        // initialize v0 (the previous row of distances)
-        // this row is A[0][i]: edit distance for an empty s1
-        // the distance is the cost of inserting each character of s2
-        v0[0] = 0;
-        for (int i = 1; i < v0.length; i++) {
-            v0[i] = v0[i - 1] + insertionCost(s2.charAt(i - 1));
-        }
-
-        for (int i = 0; i < s1.length(); i++) {
-            char s1i = s1.charAt(i);
-            double deletion_cost = deletionCost(s1i);
-
-            // calculate v1 (current row distances) from the previous row v0
-            // first element of v1 is A[i+1][0]
-            // Edit distance is the cost of deleting characters from s1
-            // to match empty t.
-            v1[0] = v0[0] + deletion_cost;
-
-            double minv1 = v1[0];
-
-            // use formula to fill in the rest of the row
-            for (int j = 0; j < s2.length(); j++) {
-                char s2j = s2.charAt(j);
-                double cost = 0;
-                if (s1i != s2j) {
-                    cost = charsub.cost(s1i, s2j);
-                }
-                double insertion_cost = insertionCost(s2j);
-                v1[j + 1] = Math.min(
-                        v1[j] + insertion_cost, // Cost of insertion
-                        Math.min(
-                                v0[j + 1] + deletion_cost, // Cost of deletion
-                                v0[j] + cost)); // Cost of substitution
-
-                minv1 = Math.min(minv1, v1[j + 1]);
-            }
-
-            if (minv1 >= limit) {
-                return limit;
-            }
-
-            // copy v1 (current row) to v0 (previous row) for next iteration
-            //System.arraycopy(v1, 0, v0, 0, v0.length);
-            // Flip references to current and previous row
-            vtemp = v0;
-            v0 = v1;
-            v1 = vtemp;
-
-        }
-
-        return v0[s2.length()];
+    public final double distance(final String s1, final String s2, final double limit) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 
     private double insertionCost(final char c) {
         if (charchange == null) {

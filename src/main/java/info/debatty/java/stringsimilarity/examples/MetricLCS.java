@@ -21,30 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package info.debatty.java.stringsimilarity.examples;
 
 /**
- *
  * @author Thibault Debatty
  */
 public class MetricLCS {
 
-        public static void main(String[] args) {
-        
-        info.debatty.java.stringsimilarity.MetricLCS lcs = 
-                new info.debatty.java.stringsimilarity.MetricLCS();
-        
-        String s1 = "ABCDEFG";   
-        String s2 = "ABCDEFHJKL";
-        // LCS: ABCDEF => length = 6
-        // longest = s2 => length = 10
-        // => 1 - 6/10 = 0.4
-        System.out.println(lcs.distance(s1, s2));
-        
-        // LCS: ABDF => length = 4
-        // longest = ABDEF => length = 5
-        // => 1 - 4 / 5 = 0.2
-        System.out.println(lcs.distance("ABDEF", "ABDIF"));
-    } 
+    public static void main(String[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

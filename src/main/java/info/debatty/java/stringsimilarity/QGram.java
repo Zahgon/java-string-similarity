@@ -1,11 +1,9 @@
 package info.debatty.java.stringsimilarity;
 
 import info.debatty.java.stringsimilarity.interfaces.StringDistance;
-
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
 import net.jcip.annotations.Immutable;
 
 /**
@@ -60,22 +58,7 @@ public class QGram extends ShingleBased implements StringDistance {
      * @throws NullPointerException if s1 or s2 is null.
      */
     public final double distance(final String s1, final String s2) {
-        if (s1 == null) {
-            throw new NullPointerException("s1 must not be null");
-        }
-
-        if (s2 == null) {
-            throw new NullPointerException("s2 must not be null");
-        }
-
-        if (s1.equals(s2)) {
-            return 0;
-        }
-
-        Map<String, Integer> profile1 = getProfile(s1);
-        Map<String, Integer> profile2 = getProfile(s2);
-
-        return distance(profile1, profile2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -85,29 +68,7 @@ public class QGram extends ShingleBased implements StringDistance {
      * @param profile2
      * @return
      */
-    public final double distance(
-            final Map<String, Integer> profile1,
-            final Map<String, Integer> profile2) {
-
-        Set<String> union = new HashSet<String>();
-        union.addAll(profile1.keySet());
-        union.addAll(profile2.keySet());
-
-        int agg = 0;
-        for (String key : union) {
-            int v1 = 0;
-            int v2 = 0;
-            Integer iv1 = profile1.get(key);
-            if (iv1 != null) {
-                v1 = iv1;
-            }
-
-            Integer iv2 = profile2.get(key);
-            if (iv2 != null) {
-                v2 = iv2;
-            }
-            agg += Math.abs(v1 - v2);
-        }
-        return agg;
+    public final double distance(final Map<String, Integer> profile1, final Map<String, Integer> profile2) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

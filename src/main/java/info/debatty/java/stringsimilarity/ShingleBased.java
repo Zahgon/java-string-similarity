@@ -24,7 +24,6 @@
 package info.debatty.java.stringsimilarity;
 
 import net.jcip.annotations.Immutable;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,7 +62,6 @@ public abstract class ShingleBased {
     private static final Pattern SPACE_REG = Pattern.compile("\\s+");
 
     /**
-     *
      * @param k
      * @throws IllegalArgumentException if k is &lt;= 0
      */
@@ -75,7 +73,6 @@ public abstract class ShingleBased {
     }
 
     /**
-     *
      */
     ShingleBased() {
         this(DEFAULT_K);
@@ -87,7 +84,7 @@ public abstract class ShingleBased {
      * @return The length of k-shingles.
      */
     public final int getK() {
-        return k;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -102,19 +99,6 @@ public abstract class ShingleBased {
      * @return the profile of this string, as an unmodifiable Map
      */
     public final Map<String, Integer> getProfile(final String string) {
-        HashMap<String, Integer> shingles = new HashMap<String, Integer>();
-
-        String string_no_space = SPACE_REG.matcher(string).replaceAll(" ");
-        for (int i = 0; i < (string_no_space.length() - k + 1); i++) {
-            String shingle = string_no_space.substring(i, i + k);
-            Integer old = shingles.get(shingle);
-            if (old != null) {
-                shingles.put(shingle, old + 1);
-            } else {
-                shingles.put(shingle, 1);
-            }
-        }
-
-        return Collections.unmodifiableMap(shingles);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

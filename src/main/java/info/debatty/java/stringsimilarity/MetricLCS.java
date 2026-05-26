@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package info.debatty.java.stringsimilarity;
 
 import info.debatty.java.stringsimilarity.interfaces.MetricStringDistance;
@@ -35,8 +34,7 @@ import net.jcip.annotations.Immutable;
  * @author Thibault Debatty
  */
 @Immutable
-public class MetricLCS
-        implements MetricStringDistance, NormalizedStringDistance {
+public class MetricLCS implements MetricStringDistance, NormalizedStringDistance {
 
     private final LongestCommonSubsequence lcs = new LongestCommonSubsequence();
 
@@ -50,24 +48,6 @@ public class MetricLCS
      * @throws NullPointerException if s1 or s2 is null.
      */
     public final double distance(final String s1, final String s2) {
-        if (s1 == null) {
-            throw new NullPointerException("s1 must not be null");
-        }
-
-        if (s2 == null) {
-            throw new NullPointerException("s2 must not be null");
-        }
-
-        if (s1.equals(s2)) {
-            return 0;
-        }
-
-        int m_len = Math.max(s1.length(), s2.length());
-        if (m_len == 0) {
-            return 0;
-        }
-        return 1.0
-            - (1.0 * lcs.length(s1, s2))
-            / m_len;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

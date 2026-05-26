@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package info.debatty.java.stringsimilarity;
 
 import info.debatty.java.stringsimilarity.interfaces.MetricStringDistance;
@@ -30,7 +29,6 @@ import info.debatty.java.stringsimilarity.interfaces.NormalizedStringDistance;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
 import net.jcip.annotations.Immutable;
 
 /**
@@ -44,9 +42,7 @@ import net.jcip.annotations.Immutable;
  * @author Thibault Debatty
  */
 @Immutable
-public class Jaccard extends ShingleBased implements
-        MetricStringDistance, NormalizedStringDistance,
-        NormalizedStringSimilarity {
+public class Jaccard extends ShingleBased implements MetricStringDistance, NormalizedStringDistance, NormalizedStringSimilarity {
 
     /**
      * The strings are first transformed into sets of k-shingles (sequences of k
@@ -76,32 +72,8 @@ public class Jaccard extends ShingleBased implements
      * @throws NullPointerException if s1 or s2 is null.
      */
     public final double similarity(final String s1, final String s2) {
-        if (s1 == null) {
-            throw new NullPointerException("s1 must not be null");
-        }
-
-        if (s2 == null) {
-            throw new NullPointerException("s2 must not be null");
-        }
-
-        if (s1.equals(s2)) {
-            return 1;
-        }
-
-        Map<String, Integer> profile1 = getProfile(s1);
-        Map<String, Integer> profile2 = getProfile(s2);
-
-
-        Set<String> union = new HashSet<String>();
-        union.addAll(profile1.keySet());
-        union.addAll(profile2.keySet());
-
-        int inter = profile1.keySet().size() + profile2.keySet().size()
-                - union.size();
-
-        return 1.0 * inter / union.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 
     /**
      * Distance is computed as 1 - similarity.
@@ -111,6 +83,6 @@ public class Jaccard extends ShingleBased implements
      * @throws NullPointerException if s1 or s2 is null.
      */
     public final double distance(final String s1, final String s2) {
-        return 1.0 - similarity(s1, s2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

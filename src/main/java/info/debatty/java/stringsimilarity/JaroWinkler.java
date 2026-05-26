@@ -3,7 +3,6 @@ package info.debatty.java.stringsimilarity;
 import info.debatty.java.stringsimilarity.interfaces.NormalizedStringSimilarity;
 import info.debatty.java.stringsimilarity.interfaces.NormalizedStringDistance;
 import java.util.Arrays;
-
 import net.jcip.annotations.Immutable;
 
 /**
@@ -18,17 +17,18 @@ import net.jcip.annotations.Immutable;
  * @author Thibault Debatty
  */
 @Immutable
-public class JaroWinkler
-        implements NormalizedStringSimilarity, NormalizedStringDistance {
+public class JaroWinkler implements NormalizedStringSimilarity, NormalizedStringDistance {
 
     private static final double DEFAULT_THRESHOLD = 0.7;
+
     private static final int THREE = 3;
+
     private static final double JW_COEF = 0.1;
+
     private final double threshold;
 
     /**
      * Instantiate with default threshold (0.7).
-     *
      */
     public JaroWinkler() {
         this.threshold = DEFAULT_THRESHOLD;
@@ -51,7 +51,7 @@ public class JaroWinkler
      * @return the current value of the threshold
      */
     public final double getThreshold() {
-        return threshold;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -62,33 +62,8 @@ public class JaroWinkler
      * @throws NullPointerException if s1 or s2 is null.
      */
     public final double similarity(final String s1, final String s2) {
-        if (s1 == null) {
-            throw new NullPointerException("s1 must not be null");
-        }
-
-        if (s2 == null) {
-            throw new NullPointerException("s2 must not be null");
-        }
-
-        if (s1.equals(s2)) {
-            return 1;
-        }
-
-        int[] mtp = matches(s1, s2);
-        float m = mtp[0];
-        if (m == 0) {
-            return 0f;
-        }
-        double j = ((m / s1.length() + m / s2.length() + (m - mtp[1]) / m))
-                / THREE;
-        double jw = j;
-
-        if (j > getThreshold()) {
-            jw = j + Math.min(JW_COEF, 1.0 / mtp[THREE]) * mtp[2] * (1 - j);
-        }
-        return jw;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 
     /**
      * Return 1 - similarity.
@@ -98,7 +73,7 @@ public class JaroWinkler
      * @throws NullPointerException if s1 or s2 is null.
      */
     public final double distance(final String s1, final String s2) {
-        return 1.0 - similarity(s1, s2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private int[] matches(final String s1, final String s2) {
@@ -117,10 +92,7 @@ public class JaroWinkler
         int matches = 0;
         for (int mi = 0; mi < min.length(); mi++) {
             char c1 = min.charAt(mi);
-            for (int xi = Math.max(mi - range, 0),
-                    xn = Math.min(mi + range + 1, max.length());
-                    xi < xn;
-                    xi++) {
+            for (int xi = Math.max(mi - range, 0), xn = Math.min(mi + range + 1, max.length()); xi < xn; xi++) {
                 if (!match_flags[xi] && c1 == max.charAt(xi)) {
                     match_indexes[mi] = xi;
                     match_flags[xi] = true;
@@ -157,6 +129,6 @@ public class JaroWinkler
                 break;
             }
         }
-        return new int[]{matches, transpositions / 2, prefix, max.length()};
+        return new int[] { matches, transpositions / 2, prefix, max.length() };
     }
 }
